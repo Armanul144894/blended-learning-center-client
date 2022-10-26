@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Image } from "react-bootstrap";
+import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -47,12 +47,38 @@ const Header = () => {
                   Blogs
                 </Link>
               </>
+              <>
+                <Link className="ms-3" to="/blankRoutes">
+                  Blank-Routes
+                </Link>
+              </>
             </Nav>
             <Nav>
               <>
                 {user?.uid ? (
                   <>
-                    <span>{user?.displayName} </span>
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={
+                        <Tooltip id="button-tooltip-2">
+                          {user?.displayName}
+                        </Tooltip>
+                      }
+                    >
+                      {({ ref, ...triggerHandler }) => (
+                        <nav
+                          {...triggerHandler}
+                          className="d-inline-flex align-items-center"
+                        >
+                          <Image
+                            style={{ height: "40px", width: "40px" }}
+                            ref={ref}
+                            roundedCircle
+                            src={user?.photoURL}
+                          />
+                        </nav>
+                      )}
+                    </OverlayTrigger>
                     <button onClick={handelLogout} className="rounded ms-2">
                       Logout
                     </button>
@@ -68,17 +94,6 @@ const Header = () => {
                   </>
                 )}
               </>
-
-              {user?.photoURL ? (
-                <Image
-                  className="ms-3"
-                  style={{ height: "30px" }}
-                  roundedCircle
-                  src={user?.photoURL}
-                ></Image>
-              ) : (
-                <FaUserCircle className="ms-2"></FaUserCircle>
-              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

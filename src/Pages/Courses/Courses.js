@@ -1,17 +1,18 @@
 import React from "react";
+import Home from "../Home/Home";
 import { Col, Row } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
 import SideBar from "../../Shared/SideBar/SideBar";
+// import SideBar from "../Shared/SideBar/SideBar";
 
 const Courses = () => {
   return (
     <div>
-      <Row className="container mx-auto">
+      <Row className="container mx-auto my-5">
         <Col lg="4">
           <SideBar></SideBar>
         </Col>
         <Col lg="8">
-          <Outlet></Outlet>
+          <Home></Home>
         </Col>
       </Row>
     </div>

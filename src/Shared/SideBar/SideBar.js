@@ -16,7 +16,7 @@ const SideBar = () => {
       <h2>course category</h2>
       {categories.map((category) => (
         <p key={category.id}>
-          <Link to={`/category/${category.id}`}>{category.name}</Link>
+          <Link to={`/course/${category.id}`}>{category.name}</Link>
         </p>
       ))}
     </div>

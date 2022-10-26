@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import "./AllCourses.css";
+import { FaArrowRight } from "react-icons/fa";
 
 const AllCourses = ({ courses }) => {
   const { _id, name, thumbnail_url, category_id } = courses;
@@ -12,14 +13,11 @@ const AllCourses = ({ courses }) => {
     <div className="">
       <Card className="w-75">
         <Card.Img className="course-img" variant="top" src={thumbnail_url} />
-        <Card.Body>
+        <Card.Body className="d-flex justify-content-between">
           <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Link to={`/courses/${_id}`}>
-            <Button variant="primary">Course Details</Button>
+
+          <Link to={`/course/${category_id}`}>
+            <FaArrowRight></FaArrowRight>
           </Link>
         </Card.Body>
       </Card>

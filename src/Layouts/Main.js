@@ -8,14 +8,7 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <Row className="container mx-auto">
-        <Col lg="4">
-          <SideBar></SideBar>
-        </Col>
-        <Col lg="8">
-          <Outlet></Outlet>
-        </Col>
-      </Row>
+      <Outlet></Outlet>
     </div>
   );
 };

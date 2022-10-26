@@ -1,17 +1,24 @@
 import React from "react";
+import { useContext } from "react";
+import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthProvider";
 import "./Header.css";
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
+  const handelLogout = () => {};
   return (
     <div className="header fw-bold">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand className="d-flex align-items-center">
-            <img className="header-img rounded-circle" src={logo} alt="" />
+            <img className="header-img rounded-circle me-2" src={logo} alt="" />
             <Link to="/">Blended Learning Center</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -34,10 +41,36 @@ const Header = () => {
               </>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
-              </Nav.Link>
+              <>
+                {user?.uid ? (
+                  <>
+                    <span>{user?.displayName} </span>
+                    <button onClick={handelLogout} className="rounded ms-2">
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">
+                      <button className="rounded ms-2">Login</button>
+                    </Link>
+                    <Link to="/register">
+                      <button className="rounded ms-2">Register</button>
+                    </Link>
+                  </>
+                )}
+              </>
+              <Link to="/profile">
+                {user?.photoURL ? (
+                  <Image
+                    style={{ height: "30px" }}
+                    roundedCircle
+                    src={user?.photoURL}
+                  ></Image>
+                ) : (
+                  <FaUserCircle className="ms-2"></FaUserCircle>
+                )}
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

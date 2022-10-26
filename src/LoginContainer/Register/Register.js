@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const { createUser, updateUserProfile, verifyEmail } =
@@ -26,7 +28,7 @@ const Register = () => {
         form.reset();
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
-        alert("please verify your email address");
+        toast.warn("please verify your email address");
       })
       .catch((error) => {
         console.error(error);
@@ -57,7 +59,7 @@ const Register = () => {
   };
   return (
     <div className="w-50 mx-auto my-5 ">
-      <Card>
+      <Card className="shadow">
         <Card.Body>
           <Form onSubmit={handelSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -109,9 +111,21 @@ const Register = () => {
               <Form.Text className="text-danger">{error}</Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={!accept}>
+            <Button
+              className="w-100 my-2"
+              variant="primary"
+              type="submit"
+              disabled={!accept}
+            >
               Register
             </Button>
+
+            <div className="my-2 text-center">
+              <p>
+                Already have an account? <Link to="/login">Login</Link>
+              </p>
+            </div>
+            <ToastContainer position="top-center" />
           </Form>
         </Card.Body>
       </Card>

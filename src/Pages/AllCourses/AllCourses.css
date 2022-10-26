@@ -6,3 +6,9 @@
 .course-img {
   height: 250px;
 }
+
+@media screen and(max-width:776px) {
+  .course-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

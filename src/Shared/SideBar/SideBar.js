@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ListGroup from "react-bootstrap/ListGroup";
+import "./SideBar.css";
 
 const SideBar = () => {
   const [categories, setCategories] = useState([]);
@@ -12,11 +14,15 @@ const SideBar = () => {
       .then((data) => setCategories(data));
   }, []);
   return (
-    <div>
+    <div className="course-category">
       <h2>course category</h2>
       {categories.map((category) => (
         <p key={category.id}>
-          <Link to={`/course/${category.id}`}>{category.name}</Link>
+          <Link to={`/course/${category.id}`}>
+            <ListGroup>
+              <ListGroup.Item>{category.name}</ListGroup.Item>
+            </ListGroup>
+          </Link>
         </p>
       ))}
     </div>

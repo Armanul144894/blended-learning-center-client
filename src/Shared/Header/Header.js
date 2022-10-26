@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,7 +17,7 @@ const Header = () => {
   const handelLogout = () => {
     logOut()
       .then(() => {
-        alert("Sign Out Successfully");
+        toast.success("Sign Out Successfully");
       })
       .catch((error) => {
         console.error(error);
@@ -81,6 +83,18 @@ const Header = () => {
                     </OverlayTrigger>
                     <button onClick={handelLogout} className="rounded ms-2">
                       Logout
+                      <ToastContainer
+                        position="top-center"
+                        autoClose={1500}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                      />
                     </button>
                   </>
                 ) : (

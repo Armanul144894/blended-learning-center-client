@@ -10,8 +10,8 @@ const AllCourses = ({ courses }) => {
   //   console.log(courses);
 
   return (
-    <div className="">
-      <Card className="w-75">
+    <div className="container mx-auto mt-5">
+      <Card className="">
         <Card.Img className="course-img" variant="top" src={thumbnail_url} />
         <Card.Body className="d-flex justify-content-between">
           <Card.Title>{name}</Card.Title>

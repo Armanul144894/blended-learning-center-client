@@ -7,7 +7,9 @@ import { FaGoogle, FaGithubSquare } from "react-icons/fa";
 import { Card } from "react-bootstrap";
 import "./Login.css";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { signIn, login, setLoading } = useContext(AuthContext);
@@ -29,8 +31,9 @@ const Login = () => {
         setError("");
         if (user.emailVerified) {
           navigate(from, { replace: true });
+          toast.success("Login Successfully");
         } else {
-          alert("Please verify your email");
+          toast.warn("Please verify your email");
         }
       })
       .catch((error) => {
@@ -52,8 +55,8 @@ const Login = () => {
       });
   };
   return (
-    <div className="w-50 mx-auto mt-5 mb-5">
-      <Card className="">
+    <div className="w-50 card-container mx-auto mt-5 mb-5">
+      <Card className="shadow">
         <Card.Body>
           <Form onSubmit={handelSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -77,9 +80,16 @@ const Login = () => {
               <Form.Text className="text-danger">{error}</Form.Text>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button className="w-100 mb-3" variant="primary" type="submit">
               Login
             </Button>
+            <ToastContainer position="top-center" />
+
+            <div className="my-4 text-center">
+              <p>
+                Are you a new user? <Link to="/register">Register</Link>
+              </p>
+            </div>
           </Form>
 
           <div className="my-4">

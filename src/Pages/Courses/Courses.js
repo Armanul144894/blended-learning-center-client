@@ -1,15 +1,19 @@
 import React from "react";
 import Home from "../Home/Home";
-import { Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import SideBar from "../../Shared/SideBar/SideBar";
 // import SideBar from "../Shared/SideBar/SideBar";
 
 const Courses = () => {
   return (
     <div>
-      <Row className="container mx-auto my-5">
-        <Col lg="4">
-          <SideBar></SideBar>
+      <Row className="container mx-auto">
+        <Col lg="4" className="my-5">
+          <Card>
+            <Card.Body>
+              <SideBar></SideBar>
+            </Card.Body>
+          </Card>
         </Col>
         <Col lg="8">
           <Home></Home>

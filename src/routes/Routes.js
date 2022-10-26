@@ -9,6 +9,8 @@ import Courses from "../Pages/Courses/Courses";
 import FAQ from "../Pages/FAQ/FAQ";
 import Home from "../Pages/Home/Home";
 import NotFound from "../Pages/NotFound/NotFound";
+import Packages from "../Pages/Packages/Packages";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 const Routes = () => {
   const router = createBrowserRouter([
@@ -47,6 +49,14 @@ const Routes = () => {
         {
           path: "/faq",
           element: <FAQ></FAQ>,
+        },
+        {
+          path: "/packages",
+          element: (
+            <PrivateRoutes>
+              <Packages></Packages>
+            </PrivateRoutes>
+          ),
         },
       ],
     },

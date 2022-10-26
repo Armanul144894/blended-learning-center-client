@@ -37,13 +37,16 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (profile) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, profile);
   };
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   const verifyEmail = () => {
+    setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
   useEffect(() => {
@@ -57,6 +60,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   const authInfo = {
     user,
+    loading,
     signIn,
     login,
     logOut,

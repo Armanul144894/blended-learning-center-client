@@ -3,17 +3,43 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../context/AuthProvider";
-import { FaGoogle, FaGooglePlusSquare, FaGithubSquare } from "react-icons/fa";
+import { FaGoogle, FaGithubSquare } from "react-icons/fa";
 import { Card } from "react-bootstrap";
 import "./Login.css";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, login, setLoading } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          alert("Please verify your email");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   const handleSignIn = () => {
     signIn()
@@ -26,7 +52,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="w-50 mx-auto mt-5 position-absolute top-50 start-50 translate-middle">
+    <div className="w-50 mx-auto mt-5 mb-5">
       <Card className="">
         <Card.Body>
           <Form onSubmit={handelSubmit}>
@@ -48,7 +74,7 @@ const Login = () => {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Text className="text-danger"></Form.Text>
+              <Form.Text className="text-danger">{error}</Form.Text>
             </Form.Group>
 
             <Button variant="primary" type="submit">
@@ -56,11 +82,8 @@ const Login = () => {
             </Button>
           </Form>
 
-          <div>
-            <p>
-              <hr /> or with
-              <hr />
-            </p>
+          <div className="my-4">
+            <div className="hr-sect mt-3">Or With</div>
             <div className="border-5 d-flex justify-content-around">
               <button onClick={handleSignIn} className="btn btn-success">
                 <FaGoogle className="text-warning icon"></FaGoogle> Google

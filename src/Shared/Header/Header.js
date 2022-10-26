@@ -10,9 +10,17 @@ import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
 import "./Header.css";
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handelLogout = () => {};
+  const handelLogout = () => {
+    logOut()
+      .then(() => {
+        alert("Sign Out Successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div className="header fw-bold">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -60,17 +68,17 @@ const Header = () => {
                   </>
                 )}
               </>
-              <Link to="/profile">
-                {user?.photoURL ? (
-                  <Image
-                    style={{ height: "30px" }}
-                    roundedCircle
-                    src={user?.photoURL}
-                  ></Image>
-                ) : (
-                  <FaUserCircle className="ms-2"></FaUserCircle>
-                )}
-              </Link>
+
+              {user?.photoURL ? (
+                <Image
+                  className="ms-3"
+                  style={{ height: "30px" }}
+                  roundedCircle
+                  src={user?.photoURL}
+                ></Image>
+              ) : (
+                <FaUserCircle className="ms-2"></FaUserCircle>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

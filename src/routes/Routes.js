@@ -29,7 +29,9 @@ const Routes = () => {
         {
           path: "/course/:id",
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/course/${params.id}`);
+            return fetch(
+              `https://blended-learning-center-server.vercel.app/course/${params.id}`
+            );
           },
           element: <CourseDetails></CourseDetails>,
         },
@@ -48,9 +50,6 @@ const Routes = () => {
         },
         {
           path: "/faq",
-          loader: () => {
-            return fetch("http://localhost:5000/courses");
-          },
           element: <FAQ></FAQ>,
         },
         {

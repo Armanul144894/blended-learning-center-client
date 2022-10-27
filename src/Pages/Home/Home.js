@@ -7,7 +7,7 @@ const Home = () => {
   const [allCourses, setAllCourse] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/courses")
+    fetch("https://blended-learning-center-server.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => setAllCourse(data));
   }, []);

@@ -31,7 +31,9 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Purchase</Button>
+              <Button className="w-100" variant="primary">
+                Purchase
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -53,7 +55,9 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Purchase</Button>
+              <Button className="w-100" variant="primary">
+                Purchase
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -75,7 +79,9 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Purchase</Button>
+              <Button className="w-100" variant="primary">
+                Purchase
+              </Button>
             </Card.Body>
           </Card>
         </Col>

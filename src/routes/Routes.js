@@ -48,6 +48,9 @@ const Routes = () => {
         },
         {
           path: "/faq",
+          loader: () => {
+            return fetch("http://localhost:5000/courses");
+          },
           element: <FAQ></FAQ>,
         },
         {

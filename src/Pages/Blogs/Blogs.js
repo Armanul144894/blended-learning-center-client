@@ -8,7 +8,7 @@ import firebase from "../../assets/firebase.png";
 
 const Blogs = () => {
   return (
-    <div className="course-container container">
+    <div className="course-container container my-5">
       <Card>
         <Card.Img variant="top" src={cors} />
         <Card.Body>

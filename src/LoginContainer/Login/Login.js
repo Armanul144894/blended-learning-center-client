@@ -10,12 +10,14 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { signIn, login, setLoading } = useContext(AuthContext);
+  const { signIn, login, setLoading, gitSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const googleProvider = new GoogleAuthProvider();
+  const gitProvider = new GithubAuthProvider();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const handelSubmit = (event) => {
@@ -45,7 +47,17 @@ const Login = () => {
       });
   };
   const handleSignIn = () => {
-    signIn()
+    signIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleGitSignIn = () => {
+    gitSignIn(gitProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -99,7 +111,7 @@ const Login = () => {
                 <FaGoogle className="text-warning icon"></FaGoogle> Google
               </button>
 
-              <button className="btn btn-success">
+              <button onClick={handleGitSignIn} className="btn btn-success">
                 <FaGithubSquare className="icon"></FaGithubSquare> GitHub
               </button>
             </div>

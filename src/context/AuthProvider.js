@@ -5,7 +5,6 @@ import app from "../firebase/firebase.config";
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
   signInWithEmailAndPassword,
@@ -20,11 +19,15 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider();
 
-  const signIn = () => {
+  const signIn = (googleProvider) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+
+  const gitSignIn = (gitProvider) => {
+    setLoading(true);
+    return signInWithPopup(auth, gitProvider);
   };
   const createUser = (email, password) => {
     setLoading(true);
@@ -60,6 +63,7 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     signIn,
+    gitSignIn,
     login,
     logOut,
     verifyEmail,

@@ -67,7 +67,7 @@ const Register = () => {
               <Form.Control
                 type="text"
                 name="userName"
-                placeholder="Enter email"
+                placeholder="User Name"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -75,7 +75,7 @@ const Register = () => {
               <Form.Control
                 type="text"
                 name="photoURL"
-                placeholder="Enter email"
+                placeholder="Photo URL"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">

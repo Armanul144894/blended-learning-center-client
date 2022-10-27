@@ -10,6 +10,7 @@ import FAQ from "../Pages/FAQ/FAQ";
 import Home from "../Pages/Home/Home";
 import NotFound from "../Pages/NotFound/NotFound";
 import Packages from "../Pages/Packages/Packages";
+import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 
 const Routes = () => {
@@ -45,6 +46,10 @@ const Routes = () => {
           element: <Register></Register>,
         },
         {
+          path: "/terms",
+          element: <TermsAndCondition></TermsAndCondition>,
+        },
+        {
           path: "/blogs",
           element: <Blogs></Blogs>,
         },
@@ -53,7 +58,12 @@ const Routes = () => {
           element: <FAQ></FAQ>,
         },
         {
-          path: "/packages",
+          path: "/packages/:id",
+          loader: async ({ params }) => {
+            return fetch(
+              `https://blended-learning-center-server.vercel.app/course/${params.id}`
+            );
+          },
           element: (
             <PrivateRoutes>
               <Packages></Packages>

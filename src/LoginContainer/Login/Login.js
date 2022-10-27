@@ -13,7 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { signIn, login, setLoading, gitSignIn } = useContext(AuthContext);
+  const { signIn, login, setLoading, gitSignIn, setUser } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
@@ -29,6 +30,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setUser(user);
         form.reset();
         setError("");
         if (user.emailVerified) {

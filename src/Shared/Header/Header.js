@@ -1,20 +1,19 @@
 import React from "react";
 import { useContext } from "react";
-import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { FaUserCircle } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-
-  const handelLogout = () => {
+  const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success("Sign Out Successfully");
@@ -50,64 +49,86 @@ const Header = () => {
                 </Link>
               </>
               <>
+                <button className="ms-3 bg-dark border-0 text-white theme">
+                  <FaSun />/<FaMoon />
+                </button>
+              </>
+              <>
                 <Link className="ms-3" to="/blankRoutes">
                   Blank-Routes
                 </Link>
               </>
             </Nav>
             <Nav>
-              <>
-                {user?.uid ? (
-                  <>
-                    <OverlayTrigger
-                      placement="bottom"
-                      overlay={
-                        <Tooltip id="button-tooltip-2">
-                          {user?.displayName}
-                        </Tooltip>
-                      }
-                    >
-                      {({ ref, ...triggerHandler }) => (
-                        <nav
-                          {...triggerHandler}
-                          className="d-inline-flex align-items-center"
-                        >
-                          <Image
-                            style={{ height: "40px", width: "40px" }}
-                            ref={ref}
-                            roundedCircle
-                            src={user?.photoURL}
-                          />
-                        </nav>
-                      )}
-                    </OverlayTrigger>
-                    <button onClick={handelLogout} className="rounded ms-2">
-                      Logout
-                      <ToastContainer
-                        position="top-center"
-                        autoClose={1500}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="dark"
-                      />
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/login">
-                      <button className="rounded ms-2">Login</button>
-                    </Link>
-                    <Link to="/register">
-                      <button className="rounded ms-2">Register</button>
-                    </Link>
-                  </>
-                )}
-              </>
+              {user?.uid ? (
+                <>
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                      <Tooltip id="button-tooltip-2">
+                        {user?.displayName}
+                      </Tooltip>
+                    }
+                  >
+                    {({ ref, ...triggerHandler }) => (
+                      <nav
+                        {...triggerHandler}
+                        className="d-inline-flex align-items-center"
+                      >
+                        <Image
+                          style={{
+                            height: "50px",
+                            width: "50px",
+                            border: "1px solid grey",
+                            padding: "2px",
+                          }}
+                          ref={ref}
+                          roundedCircle
+                          src={user?.photoURL}
+                        />
+                      </nav>
+                    )}
+                  </OverlayTrigger>
+                </>
+              ) : (
+                <Link to="/login">
+                  <FaUserCircle className="fs-1 ms-2 text-primary"></FaUserCircle>
+                </Link>
+              )}
+
+              {user?.uid ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="text-decoration-none text-black fw-semibold my-auto ms-2"
+                  >
+                    {}
+                  </Link>
+                  <Button
+                    variant="outline-info"
+                    onClick={handleLogOut}
+                    className="ms-2 my-auto"
+                  >
+                    Sign Out
+                    <ToastContainer position="top-center" />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="ms-2 my-auto  text-decoration-none"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="ms-2 my-auto  text-decoration-none"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

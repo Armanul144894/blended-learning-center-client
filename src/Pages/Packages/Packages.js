@@ -3,12 +3,17 @@ import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { FaCheckCircle } from "react-icons/fa";
+import { Link, useLoaderData } from "react-router-dom";
 const Packages = () => {
+  const course = useLoaderData();
+  const { name, header, category_id } = course;
   return (
-    <div>
-      <h2>Packages</h2>
+    <div className="my-5">
+      <div className="mb-5 text-center">
+        <h1>{header}</h1>
+      </div>
       <Row className="container mx-auto">
-        <Col lg="4">
+        <Col className="mb-4" lg="4">
           <Card>
             <Card.Header className="text-primary fw-bold text-center">
               Free
@@ -20,14 +25,17 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>10 courses included
                 </p>
                 <p>
+                  <FaCheckCircle></FaCheckCircle>10 courses included
+                </p>
+                <p>
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Purchase</Button>
             </Card.Body>
           </Card>
         </Col>
-        <Col lg="4">
+        <Col className="mb-4" lg="4">
           <Card>
             <Card.Header className="text-primary fw-bold text-center">
               Pro
@@ -39,14 +47,17 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>10 courses included
                 </p>
                 <p>
+                  <FaCheckCircle></FaCheckCircle>Get 10 courses more
+                </p>
+                <p>
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Purchase</Button>
             </Card.Body>
           </Card>
         </Col>
-        <Col lg="4">
+        <Col className="mb-4" lg="4">
           <Card>
             <Card.Header className="text-primary fw-bold text-center">
               Premium
@@ -58,14 +69,22 @@ const Packages = () => {
                   <FaCheckCircle></FaCheckCircle>10 courses included
                 </p>
                 <p>
+                  <FaCheckCircle></FaCheckCircle>All courses here
+                </p>
+                <p>
                   <FaCheckCircle></FaCheckCircle>Help center access
                 </p>
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Purchase</Button>
             </Card.Body>
           </Card>
         </Col>
       </Row>
+      <div className="text-center">
+        <Link to={`/course/${category_id}`}>
+          <button className="btn btn-primary">Go Back to Course Details</button>
+        </Link>
+      </div>
     </div>
   );
 };

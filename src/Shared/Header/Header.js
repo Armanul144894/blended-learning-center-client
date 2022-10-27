@@ -11,6 +11,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Header.css";
+
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
@@ -32,7 +33,7 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto d-flex align-items-center">
               <>
                 <Link className="ms-3" to="/courses">
                   Courses
@@ -49,10 +50,15 @@ const Header = () => {
                 </Link>
               </>
               <>
-                <button className="ms-3 bg-dark border-0 text-white theme">
+                <style type="text/css">
+                  {`.btn-flat {background-color: dark;color: white;}`}
+                </style>
+
+                <Button variant="flat" className="ms-3">
                   <FaSun />/<FaMoon />
-                </button>
+                </Button>
               </>
+
               <>
                 <Link className="ms-3" to="/blankRoutes">
                   Blank-Routes

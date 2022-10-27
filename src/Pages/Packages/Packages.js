@@ -10,7 +10,8 @@ const Packages = () => {
   return (
     <div className="my-5">
       <div className="mb-5 text-center">
-        <h1>{header}</h1>
+        <h2>{name}</h2>
+        <h4>{header}</h4>
       </div>
       <Row className="container mx-auto">
         <Col className="mb-4" lg="4">

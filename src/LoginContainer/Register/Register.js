@@ -58,8 +58,8 @@ const Register = () => {
     setAccept(event.target.checked);
   };
   return (
-    <div className="w-50 mx-auto my-5 ">
-      <Card className="shadow">
+    <div className="card-container mx-auto my-5 ">
+      <Card className="shadow ">
         <Card.Body>
           <Form onSubmit={handelSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

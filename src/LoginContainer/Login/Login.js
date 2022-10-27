@@ -55,7 +55,7 @@ const Login = () => {
       });
   };
   return (
-    <div className="w-50 card-container mx-auto mt-5 mb-5">
+    <div className=" card-container mx-auto mt-5 mb-5">
       <Card className="shadow">
         <Card.Body>
           <Form onSubmit={handelSubmit}>

@@ -42,11 +42,9 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setLoading(true);
     return signOut(auth);
   };
   const verifyEmail = () => {
-    setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
   useEffect(() => {

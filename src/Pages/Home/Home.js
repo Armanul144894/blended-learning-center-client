@@ -14,6 +14,9 @@ const Home = () => {
 
   return (
     <div className="container mx-auto">
+      <div>
+        <h2>Blended Learning Center</h2>
+      </div>
       <div className="course-container">
         {allCourses.map((courses) => (
           <AllCourses key={courses._id} courses={courses}></AllCourses>

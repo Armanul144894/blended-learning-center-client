@@ -26,15 +26,19 @@ const CourseDetails = () => {
   return (
     <div className="container mx-auto mt-5 ">
       <div className="text-center">
-        <h2 className="text-center">All the {name} course content is here.</h2>
+        <div className="d-flex align-items-center justify-content-center mb-4">
+          <h2 className="text-center me-5">
+            All the {name} course content is here.
+          </h2>
+          <Pdf targetRef={ref} filename="code-example.pdf">
+            {({ toPdf }) => (
+              <button onClick={toPdf} className="btn btn-primary ">
+                <FaDownload></FaDownload>
+              </button>
+            )}
+          </Pdf>
+        </div>
         <p className="text-justify">{details}</p>
-        <Pdf targetRef={ref} filename="code-example.pdf">
-          {({ toPdf }) => (
-            <button onClick={toPdf} className="btn btn-primary mb-5">
-              Generate Pdf <FaDownload></FaDownload>
-            </button>
-          )}
-        </Pdf>
       </div>
       <div ref={ref}>
         <Card>

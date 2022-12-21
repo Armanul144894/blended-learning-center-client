@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,8 @@ const Register = () => {
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [accept, setAccept] = useState(false);
+
+  const navigate = useNavigate();
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -28,6 +30,7 @@ const Register = () => {
         form.reset();
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
+        navigate("/");
         toast.warn("please verify your email address");
       })
       .catch((error) => {

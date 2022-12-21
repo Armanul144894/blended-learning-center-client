@@ -11,10 +11,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import Loading from "../../Shared/Loading/Loading";
 
 const Login = () => {
-  const { signIn, login, setLoading, gitSignIn, setUser } =
+  const { signIn, login, loading, setLoading, gitSignIn, setUser } =
     useContext(AuthContext);
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
@@ -52,6 +54,7 @@ const Login = () => {
     signIn(googleProvider)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => {
@@ -62,12 +65,21 @@ const Login = () => {
     gitSignIn(gitProvider)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => {
         console.error(error);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="text-center">
+        <Loading></Loading>
+      </div>
+    );
+  }
   return (
     <div className=" card-container mx-auto mt-5 mb-5">
       <Card className="shadow">

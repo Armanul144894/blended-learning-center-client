@@ -24,7 +24,7 @@ const CourseDetails = () => {
   } = course;
 
   return (
-    <div className="container mx-auto mt-5 ">
+    <div ref={ref} className="container mx-auto mt-5 ">
       <div className="text-center">
         <div className="d-flex align-items-center justify-content-center mb-4">
           <h2 className="text-center me-5">
@@ -40,7 +40,7 @@ const CourseDetails = () => {
         </div>
         <p className="text-justify">{details}</p>
       </div>
-      <div ref={ref}>
+      <div>
         <Card>
           <Row className="container h-100 mx-auto my-5">
             <Col lg="7">

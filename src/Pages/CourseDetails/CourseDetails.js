@@ -5,6 +5,7 @@ import { FaDownload } from "react-icons/fa";
 import "./CourseDetails.css";
 
 import Pdf from "react-to-pdf";
+import useTitle from "../../hooks/useTitle";
 
 const ref = React.createRef();
 
@@ -23,6 +24,7 @@ const CourseDetails = () => {
     details,
   } = course;
 
+  useTitle(`${name}`);
   return (
     <div ref={ref} className="container mx-auto mt-5 ">
       <div className="text-center">

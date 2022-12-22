@@ -7,12 +7,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
   const { createUser, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [accept, setAccept] = useState(false);
+
+  useTitle("Register");
 
   const navigate = useNavigate();
   const handelSubmit = (event) => {

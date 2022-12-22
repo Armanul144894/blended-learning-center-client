@@ -4,8 +4,10 @@ import cors from "../../assets/cors.png";
 import privateRoutes from "../../assets/privateRoutes.png";
 import node from "../../assets/node.png";
 import firebase from "../../assets/firebase.png";
+import useTitle from "../../hooks/useTitle";
 
 const Blogs = () => {
+  useTitle("Blogs");
   return (
     <div className="course-container container my-5">
       <Card>

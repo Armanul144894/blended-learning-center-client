@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 import AllCourses from "../AllCourses/AllCourses";
 import Banner from "./Banner/Banner";
@@ -11,7 +12,7 @@ import Order from "./Order/Order";
 const Home = () => {
   const { loading } = useContext(AuthContext);
   const [allCourses, setAllCourse] = useState([]);
-
+  useTitle("Home");
   useEffect(() => {
     fetch("https://blended-learning-center-server.vercel.app/courses")
       .then((res) => res.json())

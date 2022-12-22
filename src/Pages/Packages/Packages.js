@@ -4,9 +4,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 const Packages = () => {
   const course = useLoaderData();
   const { name, header, category_id } = course;
+  useTitle(`${name} Packages`);
   return (
     <div className="my-5">
       <div className="mb-5 text-center">

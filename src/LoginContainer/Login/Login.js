@@ -12,10 +12,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Loading from "../../Shared/Loading/Loading";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   const { signIn, login, loading, setLoading, gitSignIn, setUser } =
     useContext(AuthContext);
+
+  useTitle("Login");
 
   const [error, setError] = useState("");
   const navigate = useNavigate();

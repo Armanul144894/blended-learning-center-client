@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import Loading from "../../Shared/Loading/Loading";
 import SideBar from "../../Shared/SideBar/SideBar";
 import AllCourses from "./AllCourses/AllCourses";
@@ -10,6 +11,7 @@ import AllCourses from "./AllCourses/AllCourses";
 const Courses = () => {
   const { loading } = useContext(AuthContext);
 
+  useTitle("Courses");
   if (loading) {
     return (
       <div className="text-center">
